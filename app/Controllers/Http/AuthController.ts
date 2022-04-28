@@ -16,7 +16,7 @@ export default class AuthController {
       const data = await request.validate(CreateUserValidator)
       const user = await User.create(data)
       const newUser = await auth.login(user)
-      return response.status(401).json(newUser)
+      return response.status(201).json(newUser)
     } catch (e) {
       response.badRequest(e.messages)
     }
