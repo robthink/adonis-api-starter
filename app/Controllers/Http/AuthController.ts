@@ -18,7 +18,7 @@ export default class AuthController {
       const newUser = await auth.login(user)
       return response.status(201).json(newUser)
     } catch (e) {
-      response.badRequest(e.messages)
+      response.badRequest({ success: false, error: e.messages })
     }
   }
 
