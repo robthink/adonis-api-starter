@@ -3,8 +3,12 @@ import User from 'App/Models/User'
 import CreateUserValidator from 'App/Validators/CreateUserValidator'
 
 export default class AuthController {
-  public async index({ auth }: HttpContextContract) {
-    return auth.user
+  public async index({ auth, response }: HttpContextContract) {
+    if (await auth.check()) {
+      return response.json({ success: true, user: auth.user })
+    } else {
+      return response.json({ success: false, message: 'Not logged in' })
+    }
   }
 
   public async register({ request, response, auth }: HttpContextContract) {

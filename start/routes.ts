@@ -28,8 +28,8 @@ Route.get('/', async () => {
 Route.group(() => {
   Route.post('/register', 'AuthController.register')
   Route.post('/login', 'AuthController.login')
-  Route.post('/logout', 'AuthController.logout')
-  Route.post('/', 'AuthController.index')
+  Route.get('/logout', 'AuthController.logout')
+  Route.get('/', 'AuthController.index')
 }).prefix('/auth')
 
 Route.get('health', async ({ response }) => {
